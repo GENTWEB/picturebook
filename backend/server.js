@@ -18,22 +18,22 @@ mongoose.connect(MONGODB_URI, {useNewUrlParse: true });
 
 
 app.get("/", (req, res) => {
-    function apicall(){
     const giphy = {
         baseURL: "https://api.giphy.com/v1/gifs/",
         key: "&api_key=r5zJ6IQVZrTVcmo4vNJxx0r3FnDMqrPW",
-        tag: "&tag=archer",
-        type: "random?",
-        limit: "&limit=30"
+        tag: "q=archer",
+        type: "search?",
+        limit: "&limit=15"
         };
         axios
             .get(giphy.baseURL+giphy.type+giphy.tag+giphy.key+giphy.limit)
             .then(function(response){
-            result = {};
+                console.log(response.data)
+                result = {};
                 for( i=0; response.data.length; i++){
-                    result.id = response.data[i].id
-                    result.url = response.data[i].image.fixed_height.url
-
+                    result.id = response.data.data.id
+                    result.url = response.data.data.images.fixed_width_url
+                    
                     db.gif.create(result) 
                         .then(function(dbgif){
                             console.log(dbgif);
@@ -42,10 +42,9 @@ app.get("/", (req, res) => {
                             console.log(err)
                         });
                     }
+                    console.log(result)
             })
             .catch(error => console.log(error));
-    };
-    apicall();
 });
 
 // app.use("/api", app);
