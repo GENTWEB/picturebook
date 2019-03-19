@@ -28,13 +28,13 @@ app.get("/", (req, res) => {
         axios
             .get(giphy.baseURL+giphy.type+giphy.tag+giphy.key+giphy.limit)
             .then(function(response){
-                console.log(response.data)
+                console.log(response.data.data[0])
                 result = {};
-                for( i=0; response.data.length; i++){
-                    result.id = response.data.data.id
-                    result.url = response.data.data.images.fixed_width_url
+                for( i=0; response.data.data.length; i++){
+                    result.id=response.data.data[i].id
+                    result.url=response.data.data[i].images.fixed_width.url;
                     
-                    db.gif.create(result) 
+                    db.create(result) 
                         .then(function(dbgif){
                             console.log(dbgif);
                         })
