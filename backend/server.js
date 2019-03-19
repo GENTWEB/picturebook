@@ -28,9 +28,14 @@ app.get("/", (req, res) => {
         axios
             .get(giphy.baseURL+giphy.type+giphy.tag+giphy.key+giphy.limit)
             .then(function(response){
-                console.log(response.data.data[0])
-                result = {};
+                // console.log(response.data.data[0])
+
                 for( i=0; response.data.data.length; i++){
+                    result = {
+                        id: "",
+                        url: ""
+                    };
+
                     result.id=response.data.data[i].id
                     result.url=response.data.data[i].images.fixed_width.url;
                     
