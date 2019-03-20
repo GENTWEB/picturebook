@@ -14,7 +14,7 @@ router.use(logger("dev"));
 
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/gifs";
-mongoose.connect(MONGODB_URI, {useNewUrlParse: true });
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true });
 
 
 router.get("/srch", (req, res) => {
