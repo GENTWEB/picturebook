@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "concurrently \"cd backend npm install\" \"cd client && npm install --only=dev && npm install && npm run build\"",
     "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
