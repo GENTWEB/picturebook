@@ -14,7 +14,7 @@ router.use(logger("dev"));
 
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/gifs";
-mongoose.connect(MONGODB_URI, {useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, {useNewUrlParser: false });
 
 
 router.get("/srch", (req, res) => {
@@ -59,7 +59,6 @@ router.get("/getData", (req, res) => {
     });
   });
 
-router.use("/api", router);
 
 // launch our backend into a port
 router.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
