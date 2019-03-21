@@ -1,4 +1,4 @@
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/gifs";
+
 import React, { Component } from "react";
 import axios from "axios";
 
