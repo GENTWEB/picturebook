@@ -6,7 +6,9 @@ const db = require("./model/gif")
 const axios = require("axios");
 
 const API_PORT = process.env.PORT || 3001;
-const router = express();
+
+const app = express();
+const router = express.Router();
 
 router.use(express.urlencoded( { extended: false}));
 router.use(express.json());
@@ -59,8 +61,9 @@ router.get("/getData", (req, res) => {
     });
   });
 
+app.use("/api", router);
 
 // launch our backend into a port
-router.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 
 
