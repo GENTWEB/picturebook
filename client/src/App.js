@@ -1,6 +1,7 @@
 
 import React, { Component } from "react";
 import axios from "axios";
+import {API_PORT} from "../backend/server.js"
 
 class App extends Component {
   // initialize our state 
@@ -30,7 +31,7 @@ class App extends Component {
   }
 
   getDataFromDb = () => {
-    fetch(process.env.PORT+"/api/getData"||"http://localhost:3001/api/getData")
+    fetch(API_PORT+"/api/getData"||"http://localhost:3001/api/getData")
       .then(data => data.json())
       .then(res => this.setState({ data: res.data }));
   };
